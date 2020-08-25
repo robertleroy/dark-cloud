@@ -1,24 +1,29 @@
-# darkcloud
+# Darkcloud
 
-## Project setup
-```
-npm install
-```
+## Todo
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+- PWA
 
-### Compiles and minifies for production
-```
-npm run build
-```
+- update icons & images
+  - @ weather set
+  - @ favicons
+  - @ about page
 
-### Lints and fixes files
-```
-npm run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+ 
+- Cleanup
+  - App
+  - Home
+  - ~~Alerts~~
+  - ~~Map~~
+  - ~~About~~
+  - ~~WeatherIcon~~
+  - ~~Accordion~~
+  - ~~Hours~~
+  - ~~RangeBar~~
+  - ~~SearchDlg~~
+  - ~~WobbleChart~~
+  - *store*
+    - *index*
+    - *weatherService*
+    - ~~storeagePlugin~~
