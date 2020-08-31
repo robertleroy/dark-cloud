@@ -261,6 +261,8 @@ grid_main {
   padding: 1rem;
   margin: 1rem auto 1rem;
 
+  font-variant: small-caps;
+
   .dl {
     display: grid;
     grid-template-columns: max-content max-content;
@@ -319,8 +321,8 @@ grid_main {
           font-size: 70%;
           margin-right: 0.2rem;
           vertical-align: 2px;
-          -webkit-filter: grayscale(70%);
-          filter: grayscale(70%);
+          -webkit-filter: grayscale(60%);
+          filter: grayscale(60%);
         }
       }
     }
@@ -346,9 +348,9 @@ grid_main {
 }
 
 .dayShadow {
-  filter: drop-shadow(0.2rem 0.3rem 0.8rem rgba(#0D47A1,0.3));
+  filter: drop-shadow(0.2rem 0.3rem 0.8rem rgba(#0D47A1,0.4));
 }
 .nightShadow {
-  filter: drop-shadow(0.2rem 0.3rem 0.8rem rgba(#082a5e,0.3));
+  filter: drop-shadow(0.2rem 0.3rem 0.8rem rgba(#082a5e,0.4));
 }
 </style>
