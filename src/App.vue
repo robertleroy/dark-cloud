@@ -35,29 +35,14 @@ export default {
         this.$store.commit("setShowSearchDialog", false);
       }
     },
-
-    // geolocate() {
-    //   if (this.currentLocation != null) {
-    //     if (navigator.geolocation) {
-    //       this.$store.dispatch("getGeolocation");
-    //     } else {
-    //       console.log("Geolocation is not supported by your browser");
-    //       this.$store.commit("setShowSearchDialog", true);
-    //     }
-    //   } else {
-    //     console.log('currentLocation', this.currentLocation);
-    //   }
-    // },
-
-    getIp() {
-      this.$store.dispatch('getIp');
-    },
-    
   },
 
-  mounted: function () {
-    // this.geolocate();
-    this.getIp();
+  mounted: function () {    
+    if (navigator.geolocation) {
+      this.$store.dispatch("getGeolocation");
+    } else {
+      this.$store.dispatch('getIp');
+    }
   },
 
 };

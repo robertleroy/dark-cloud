@@ -259,7 +259,7 @@ grid_main {
   width: 100%;
   max-width: 500px;
   padding: 1rem;
-  margin: 1rem auto 1rem;
+  margin: 2rem auto 1rem;
 
   .dl {
     display: grid;
@@ -281,7 +281,7 @@ grid_main {
 
   width: 90%;
   max-width: 640px;
-  margin: 2rem auto 2rem;
+  margin: 1rem auto 2rem;
 
   .summary {
     padding: 1rem 0;

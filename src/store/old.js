@@ -236,6 +236,11 @@ export default new Vuex.Store({
 
   actions: {
 
+    // dispatchLocation({ dispatch, commit }, payload) {
+    //   commit('setLocation', payload);
+    //   dispatch('getWeather', payload);
+    // },
+
     async getIp({ dispatch, commit }) {
       // https://www.npmjs.com/package/public-ip
       const ipv4 = await publicIp.v4();
@@ -266,7 +271,7 @@ export default new Vuex.Store({
     }, // getIp //
 
     
-    getGeolocation({ dispatch }) {
+    getGeolocation({ dispatch, commit }) {
       var getPosition = (options) => {
         return new Promise((resolve, reject) => {
           navigator.geolocation.getCurrentPosition(resolve, reject, options);
@@ -282,26 +287,52 @@ export default new Vuex.Store({
           return coords;
         })
         .then(coords => {
-          console.log("getGeolocation", coords);
+          console("getGeolocation", coords);
           dispatch('getReverseTomtom', coords);
           // dispatch('getWeather', coords);
         })
         .catch(err => {
           console.error("Error", err);
-          // commit('setShowSearchDialog', true);
-          dispatch('getIp');
+          commit('setShowSearchDialog', true);
         })
     }, // getGeolocation //
 
 
     getReverseTomtom({ dispatch, commit }, payload) {
+      // #region dynamic dev ----------- // 
+      // const key = "feVld2SMaP5XrzH9dVUvBZ3WXo5WOsG9";
+      // const url = `https://api.tomtom.com/search/2/reverseGeocode/${payload.lat},${payload.lon}.json?key=${key}`;
+
+      // axios.get(url)
+      // .then(res => {
+
+      //   const data = res.data.addresses[0].address;
+      //   const obj = {
+      //     city: data.localName || data.municipality,
+      //     region: data.countrySubdivision,
+      //     regionName: data.countrySubdivisionName,
+      //     country: data.country,
+      //     countryCode: data.countryCode,
+      //     localName: data.localName ? data.localName :  data.freeformAddress ? data.freeformAddress : data.countrySubdivisionName,
+      //     lat: payload.lat,
+      //     lon: payload.lon
+      //   };
+      //   commit('setLocation', obj);
+      // })
+      // #endregion dynamic dev ----------- // 
+
+
+
+      // #region production ----------- // 
       axios({
         method: 'POST',
         url: './reverseTomtom',
         data: `${payload.lat},${payload.lon}`
       })
         .then(res => {
+
           // console.log('reverseTomtom', res);
+
           const data = res.data.addresses[0].address;
           const obj = {
             city: data.localName || data.municipality,
@@ -317,11 +348,40 @@ export default new Vuex.Store({
           commit('setLocation', obj);
           dispatch('getWeather', obj);
         })
+      // #region production ----------- // 
     }, // getReverseTomtom //
 
 
 
     getTomtom({ commit, dispatch }, payload) {
+
+      // #region dynamic dev ---------------- //
+      // const searchUrl = 'https://api.tomtom.com/search/2/search/';
+      // const token = '.json?key=feVld2SMaP5XrzH9dVUvBZ3WXo5WOsG9';
+      // const params = '&limit=1&lat=40.0426&lon=-106.3980&idxSet=Geo';  
+      // const url = `${searchUrl}${payload}${token}${params}`;
+
+      // axios.get(url)
+      // .then(res => {
+      //   if (res.data.results.length < 1) return;
+      //   // console.log(res);
+      //   const obj = formatTomtom(res.data.results[0]);
+      //   dispatch('dispatchLocation', obj);
+      //   return obj;
+
+      // })
+      // .then(obj => {
+      //   // console.log(data);
+      //   commit('addLocation', obj);
+      //   commit('setShowSearchDialog', false);
+      // })
+      // .catch(err => {
+      //   console.log("Tomtom Request Failed: ", err);
+      //   commit('setShowSearchDialog', true);
+      // })
+      // #endregion dynamic dev ---------------- //
+
+      // #region production ---------------- //
       axios.post('./tomtom', {
         searchTerm: payload
       })
@@ -342,11 +402,35 @@ export default new Vuex.Store({
           console.log("Tomtom Request Failed: ", err);
           commit('setShowSearchDialog', true);
         })
+
+      // #endregion production ---------------- //
     }, // getTomtom // 
 
 
 
     getWeather({ commit }, payload) {
+
+      // #region static dev  //
+      // commit('setWeather', Weather);
+      // commit('setLoading', false);
+      // #endregion static dev  //
+
+
+      // #region dynamic dev  //
+      // const darkKey = 'f16e16cbccd9cc7e4561e66941d93a97';
+      // const url=`https://observable-cors.glitch.me/https://api.darksky.net/forecast/${darkKey}/${payload.lat},${payload.lon}?extend=hourly`;
+
+      // console.log(url);
+
+      // axios.get(url)
+      // .then(res => {
+      //   // console.log("Weather", res.data);
+      //   commit('setWeather', res.data);
+      // })
+      // #endregion dynamic dev  //
+
+
+      // #region production //
       axios({
         method: 'POST',
         url: './weather',
@@ -361,6 +445,8 @@ export default new Vuex.Store({
       .catch(err => {
         console.log("Darksky Request Failed: ", err);
       });
+      // #endregion production //
+
     }, // getWeather //
 
 

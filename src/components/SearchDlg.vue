@@ -86,20 +86,16 @@ export default {
     },
 
     geolocate() {
-      if (this.currentLocation !== {}) {
+      try {
         if (navigator.geolocation) {
           this.$store.dispatch("getGeolocation");
         } else {
-          console.log("Geolocation is not supported by your browser");
-          this.$store.commit("setShowSearchDialog", true);
+          this.$store.dispatch('getIp');
         }
-      } else {
-        console.log(this.currentLocation);
+      } catch {
+        console.log("Geolocation error");
+          this.$store.commit("setShowSearchDialog", true);
       }
-    },
-
-    getIp() {
-      this.$store.dispatch('getIp');
     },
 
     getTomtom() {
@@ -110,7 +106,6 @@ export default {
       //   return;
       // }
       console.log('dispatch getTomtom',this.searchTerm);
-
       this.$store.dispatch("getTomtom", this.searchTerm);
     },
   },
@@ -128,7 +123,7 @@ export default {
     <div class="inputBar">
       <div class="barGroup">
         <div class="searchGroup">
-          <div class="icon btn" title="my location" @click="getIp">my_location</div>
+          <div class="icon btn" title="my location" @click="geolocate">my_location</div>
 
             <input type="text"
             ref="searchBox"
