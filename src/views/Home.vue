@@ -261,8 +261,6 @@ grid_main {
   padding: 1rem;
   margin: 1rem auto 1rem;
 
-  font-variant: small-caps;
-
   .dl {
     display: grid;
     grid-template-columns: max-content max-content;
@@ -321,8 +319,8 @@ grid_main {
           font-size: 70%;
           margin-right: 0.2rem;
           vertical-align: 2px;
-          -webkit-filter: grayscale(60%);
-          filter: grayscale(60%);
+          -webkit-filter: grayscale(40%);
+          filter: grayscale(40%);
         }
       }
     }

@@ -20,6 +20,7 @@ export default {
 
 
     <div class="image">
+
       <svg data-title="tunderstorm-anim" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24">
         <defs>
           <linearGradient id="gr-stormcloud">
@@ -37,6 +38,11 @@ export default {
           </linearGradient>
           <linearGradient id="bolt1" x1="11" x2="10" y1="15" y2="19" gradientTransform="translate(-3 1)" gradientUnits="userSpaceOnUse" xlink:href="#gr-lightning"/>
           <linearGradient id="bolt2" x1="11" x2="10" y1="15" y2="19" gradientTransform="translate(5)" gradientUnits="userSpaceOnUse" xlink:href="#gr-lightning"/>
+          
+        <filter id="f1" x="0" y="0" width="200%" height="200%">
+          <feDropShadow dx="0.2" dy="0.4" stdDeviation="0.2" flood-color="white"/>
+        </filter>
+          
         </defs>
         <g class="thunderstorm-anim">
           <path fill="#78909c" d="M9.952 12A2 2 0 008 14a2 2 0 002 2 2 2 0 001.5-.68A2 2 0 0013 16a2 2 0 002-2 2 2 0 00-2-2 2 2 0 00-1.5.68A2 2 0 0010 12a2 2 0 00-.048 0z" class="notcloud" />
@@ -69,7 +75,17 @@ export default {
                               begin="0s" 
                               repeatCount="indefinite"/>
           </path>
-          <path fill="url(#f-stormcloud)" d="M9.983 5A2.5 2.5 0 007.52 7.201 2.5 2.5 0 008.5 12a2.5 2.5 0 003.826.207 2.5 2.5 0 003.133-3.76 2.5 2.5 0 00-3.106-2.862 2.5 2.5 0 00-.527.208A2.5 2.5 0 009.983 5z" class="stormcloud" >
+          <g>
+            <path fill="white" d="M9.983 5A2.5 2.5 0 007.52 7.201 2.5 2.5 0 008.5 12a2.5 2.5 0 003.826.207 2.5 2.5 0 003.133-3.76 2.5 2.5 0 00-3.106-2.862 2.5 2.5 0 00-.527.208A2.5 2.5 0 009.983 5z" class="stormcloud"  filter="url(#f1)">  
+              <animate attributeName="opacity" 
+                      keyTimes="0;0.3;0.31;0.4;1"
+                      values="0;0;0.5;0;0"
+                      dur="17s" 
+                      begin="0"
+                      repeatCount="indefinite"/>
+            </path>
+            <path fill="url(#f-stormcloud)" d="M9.983 5A2.5 2.5 0 007.52 7.201 2.5 2.5 0 008.5 12a2.5 2.5 0 003.826.207 2.5 2.5 0 003.133-3.76 2.5 2.5 0 00-3.106-2.862 2.5 2.5 0 00-.527.208A2.5 2.5 0 009.983 5z" class="stormcloud" >            
+            </path>
             <animateTransform attributeName="transform"
                               type="translate"  
                               keyTimes="0;0.5;1"  
@@ -79,19 +95,20 @@ export default {
                               dur="40s" 
                               begin="0s" 
                               repeatCount="indefinite"/>
-          </path>
+          </g>
           <path fill="url(#g-stormcloud)" d="M12.483 8a2.5 2.5 0 00-1.982 1 2.5 2.5 0 00-2.415 3.147c.152.566.544 1.002.976 1.396.514 1.783 2.016 2.13 3.086 1.872a2.24 2.24 0 00.527-.208A2.5 2.5 0 0017 13.5a2.5 2.5 0 00-2.387-4.337A2.5 2.5 0 0012.483 8z" class="stormcloud" />    
-          <animateTransform attributeName="transform"
-                            type="translate"  
-                            keyTimes="0;0.25;0.5;0.75;1"  
-                            values="0 0;1 -1;-1 -1;1 0;0 0"
-                            calcMode="spline"
-                            keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1"
-                            dur="50s" 
-                            begin="0s" 
-                            repeatCount="indefinite"/>
+          <!-- <animateTransform attributeName="transform"
+                                type="translate"  
+                                keyTimes="0;0.25;0.5;0.75;1"  
+                                values="0 0;1 -1;-1 -1;1 0;0 0"
+                                calcMode="spline"
+                                keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1"
+                                dur="50s" 
+                                begin="0s" 
+                                repeatCount="indefinite"/> -->
         </g>
       </svg>
+
     </div> <!-- img -->
     
 
