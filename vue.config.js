@@ -5,8 +5,10 @@ module.exports = {
       },
   },
   pwa: {
-    name: 'My App',
-    themeColor: '#4DBA87',
+    name: 'Dark Cloud',
+    short_name:"Dark Cloud",
+    title:"Dark Cloud",
+    themeColor: '#000000',
     msTileColor: '#000000',
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: 'black',

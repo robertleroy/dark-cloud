@@ -319,8 +319,8 @@ grid_main {
           font-size: 70%;
           margin-right: 0.2rem;
           vertical-align: 2px;
-          -webkit-filter: grayscale(40%);
-          filter: grayscale(40%);
+          -webkit-filter: grayscale(60%);
+          filter: grayscale(60%);
         }
       }
     }

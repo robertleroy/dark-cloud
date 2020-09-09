@@ -235,6 +235,10 @@ export default new Vuex.Store({
 
 
   actions: {
+    dispatchLocation({ dispatch, commit }, payload) {
+      commit('setLocation', payload);
+      dispatch('getWeather', payload);
+    },
 
     async getIp({ dispatch, commit }) {
       // https://www.npmjs.com/package/public-ip
